@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""static - A simple WSGI way to serve static (or mixed) content.
+""" staticserve - A simple WSGI way to serve static (or mixed) content.
 
 (See the docstrings of the various functions and classes.)
 
-Original Copyright (C) 2006-2009 Luke Arno - http://lukearno.com/
-TODO: Add current maintainers - need to find out what to do here.
+Copyright for staticserve (C) 2013 Daniel Greenfeld and Kenneth Reitz
+Original Copyright for static (C) 2006-2009 Luke Arno - http://lukearno.com/
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -24,8 +24,9 @@ The Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor,
 Boston, MA  02110-1301, USA.
 
+Daniel Greenfeld can be found at http://pydanny.com
+Kenneth Reitz can be found at http://kennethreitz.com
 Luke Arno can be found at http://lukearno.com/
-TODO: Add current maintainers - need to find out what to do here.
 
 """
 

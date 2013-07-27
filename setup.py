@@ -24,7 +24,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author='Daniel Greenfeld',
     author_email='pydanny@gmail.com',
-    url='https://github.com/pydanny/static-server',
+    url='https://github.com/pydanny/staticserve',
     license="LGPL",
     py_modules=['static'],
     include_package_data=True,

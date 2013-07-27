@@ -1,4 +1,4 @@
-static-server
+staticserve
 =============
 
 This distribution provides an easy way to include static content
