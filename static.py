@@ -42,23 +42,21 @@ from wsgiref.headers import Headers
 from wsgiref.simple_server import make_server
 from optparse import OptionParser
 
+from werkzeug.http import parse_date, http_date
+
 try:
     from pkg_resources import resource_filename, Requirement
 except:
     pass
 
-PY3 = sys.version > '3'
-if PY3:
-    import email as rfc822
-else:
-    import rfc822
+import six
 
 
 class MagicError(Exception):
     pass
 
 
-class StatusApp:
+class StatusApp(object):
     """Used by WSGI apps to return some HTTP status."""
 
     def __init__(self, status, message=None):
@@ -99,7 +97,7 @@ class Cling(object):
     def __init__(self, root, **kw):
         """Just set the root and any other attribs passes via **kw."""
         self.root = root
-        for k, v in kw.iteritems():
+        for k, v in six.iteritems(kw):
             setattr(self, k, v)
 
     def __call__(self, environ, start_response):
@@ -123,12 +121,12 @@ class Cling(object):
         content_type = self._guess_type(full_path)
         try:
             etag, last_modified = self._conditions(full_path, environ)
-            headers = [('Date', rfc822.formatdate(time.time())),
+            headers = [('Date', http_date(time.time())),
                        ('Last-Modified', last_modified),
                        ('ETag', etag)]
             if_modified = environ.get('HTTP_IF_MODIFIED_SINCE')
-            if if_modified and (rfc822.parsedate(if_modified)
-                                >= rfc822.parsedate(last_modified)):
+            if if_modified and (parse_date(if_modified)
+                                >= parse_date(last_modified)):
                 return self.not_modified(environ, start_response, headers)
             if_none = environ.get('HTTP_IF_NONE_MATCH')
             if if_none and (if_none == '*' or etag in if_none):
@@ -163,7 +161,7 @@ class Cling(object):
     def _conditions(self, full_path, environ):
         """Return a tuple of etag, last_modified by mtime from stat."""
         mtime = stat(full_path).st_mtime
-        return str(mtime), rfc822.formatdate(mtime)
+        return str(mtime), http_date(mtime)
 
     def _file_like(self, full_path):
         """Return the appropriate file object."""
@@ -265,7 +263,7 @@ class Shock(Cling):
             return magic.conditions(full_path, environ)
         else:
             mtime = stat(full_path).st_mtime
-            return str(mtime), rfc822.formatdate(mtime)
+            return str(mtime), http_date(mtime)
 
     def _file_like(self, full_path):
         """Return the appropriate file object."""
@@ -322,7 +320,7 @@ class BaseMagic(object):
     def conditions(self, full_path, environ):
         """Return Etag and Last-Modified values (based on mtime)."""
         mtime = int(time.time())
-        return str(mtime), rfc822.formatdate(mtime)
+        return str(mtime), http_date(mtime)
 
     def file_like(self, full_path):
         """Return a file object for path."""
@@ -359,22 +357,6 @@ class StringMagic(BaseMagic):
             return [template.safe_substitute(variables)]
         else:
             return [template.substitute(variables)]
-
-
-class KidMagic(StringMagic):
-    """Like StringMagic only using the Kid templating language.
-
-    Using this requires Kid: http://kid.lesscode.org/
-    """
-
-    extension = '.kid'
-
-    def body(self, environ, full_path):
-        """Pass environ and **self.variables into the template."""
-        template = kid.Template(file=full_path,
-                                environ=environ,
-                                **self.variables)
-        return [template.serialize()]
 
 
 def command():
@@ -415,7 +397,7 @@ def command():
 
 def test():
     from wsgiref.validate import validator
-    magics = StringMagic(title="String Test"), KidMagic(title="Kid Test")
+    magics = [StringMagic(title="String Test"), ]
     app = Shock('testdata/pub', magics=magics)
     try:
         make_server('localhost', 9999, validator(app)).serve_forever()
@@ -426,3 +408,16 @@ def test():
 if __name__ == '__main__':
     test()
 
+
+
+"""
+
+[17:18:57] <mitsuhiko>   >>> from werkzeug.http import http_date
+[17:18:57] <mitsuhiko>   >>> http_date(datetime.datetime(2013, 7, 27, 15, 10, 57))
+[17:18:57] <mitsuhiko>   'Sat, 27 Jul 2013 15:10:57 GMT'
+[17:19:13] <mitsuhiko>   also in case you are working with the cookie header:
+[17:19:13] <mitsuhiko>   >>> from werkzeug.http import cookie_date
+[17:19:13] <mitsuhiko>   >>> cookie_date(datetime.datetime(2013, 7, 27, 15, 10, 57))
+[17:19:13] <mitsuhiko>   'Sat, 27-Jul-2013 15:10:57 GMT'
+[17:19:25] <mitsuhiko>   (parse_date parses either)
+"""
