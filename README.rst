@@ -4,7 +4,6 @@ staticserve
 .. image:: https://travis-ci.org/pydanny/staticserve.png
    :alt: Build Status
    :target: https://travis-ci.org/pydanny/staticserve
-   :target: https://coveralls.io/r/pydanny/staticserve
 .. image:: https://pypip.in/v/staticserve/badge.png
    :target: https://crate.io/packages/staticserve/
 .. image:: https://pypip.in/d/staticserve/badge.png
