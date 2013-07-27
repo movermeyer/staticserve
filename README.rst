@@ -1,6 +1,15 @@
 staticserve
 =============
 
+.. image:: https://travis-ci.org/pydanny/staticserve.png
+   :alt: Build Status
+   :target: https://travis-ci.org/pydanny/staticserve
+   :target: https://coveralls.io/r/pydanny/staticserve
+.. image:: https://pypip.in/v/staticserve/badge.png
+   :target: https://crate.io/packages/staticserve/
+.. image:: https://pypip.in/d/staticserve/badge.png
+   :target: https://crate.io/packages/staticserve/
+
 This distribution provides an easy way to include static content
 in your WSGI applications. There is a convenience method for serving
 files located via pkg_resources. There are also facilities for serving
