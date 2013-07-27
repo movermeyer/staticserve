@@ -19,8 +19,9 @@ if sys.argv[-1] == 'publish':
     print("  git push --tags")
     sys.exit()
 
-readme = open('README.rst', 'rt').read()
-history = open('HISTORY.rst', 'rt').read()
+readme = open('README.rst').read()
+history = open('HISTORY.rst').read()
+requirements = list([x.strip() for x in open('requirements.txt').readlines()])
 
 setup(
     name='staticserve',
@@ -32,7 +33,7 @@ setup(
     url='https://github.com/pydanny/staticserve',
     license="LGPL",
     py_modules=['static', ],
-    install_requires=['six', 'werkzeug'],
+    install_requires=requirements,
     include_package_data=True,
     zip_safe=False,
     keywords='wsgi web http static content webapps',
@@ -43,6 +44,7 @@ setup(
         'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
         'Natural Language :: English',
         'Operating System :: OS Independent',
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.3',
         'Topic :: Software Development :: Libraries',

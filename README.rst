@@ -10,3 +10,9 @@ your own handlers. Also provides a command of the same name as a convenience
 when you just want to share a little content over HTTP, ad hoc.
 
 **Note**: A Python 2.7/3.3 compatible fork of Luke Arno's static package.
+
+Dependencies
+============
+
+* six  # For Python 2/3 compatability.
+* werkzeug  # For replacing rfc822 functionality.
