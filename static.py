@@ -400,7 +400,7 @@ def test():
     magics = [StringMagic(title="String Test"), ]
     app = Shock('testdata/pub', magics=magics)
     try:
-        make_server('localhost', 9999, validator(app)).serve_forever()
+        make_server('localhost', 9997, validator(app)).serve_forever()
     except KeyboardInterrupt:
         print("Ciao, baby!")
 
