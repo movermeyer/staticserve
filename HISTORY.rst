@@ -3,6 +3,12 @@
 History
 -------
 
+0.1.2 (2013-07-28)
+++++++++++++++++++
+
+* Added tests against serving of static files
+* Mild cleanup
+
 0.1.1 (2013-07-27)
 ++++++++++++++++++
 
