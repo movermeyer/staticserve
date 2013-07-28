@@ -31,4 +31,4 @@ class TestMakeServer(unittest.TestCase):
         self.assertEqual(r.status_code, 200)
         self.assertTrue("mixed content test" in str(r.content))
 
-    
+

@@ -408,16 +408,3 @@ def test():
 if __name__ == '__main__':
     test()
 
-
-
-"""
-
-[17:18:57] <mitsuhiko>   >>> from werkzeug.http import http_date
-[17:18:57] <mitsuhiko>   >>> http_date(datetime.datetime(2013, 7, 27, 15, 10, 57))
-[17:18:57] <mitsuhiko>   'Sat, 27 Jul 2013 15:10:57 GMT'
-[17:19:13] <mitsuhiko>   also in case you are working with the cookie header:
-[17:19:13] <mitsuhiko>   >>> from werkzeug.http import cookie_date
-[17:19:13] <mitsuhiko>   >>> cookie_date(datetime.datetime(2013, 7, 27, 15, 10, 57))
-[17:19:13] <mitsuhiko>   'Sat, 27-Jul-2013 15:10:57 GMT'
-[17:19:25] <mitsuhiko>   (parse_date parses either)
-"""
