@@ -12,6 +12,16 @@ try:
 except ImportError:
     from distutils.core import setup
 
+
+def get_requirements(filename):
+    return list([x.strip() for x in open(filename).readlines()])
+
+if sys.argv[-1] == 'test':
+    requirements = get_requirements("requirements_test.txt")
+else:
+    requirements = get_requirements("requirements.txt")
+
+
 if sys.argv[-1] == 'publish':
     os.system("python setup.py sdist upload")
     print("You probably want to also tag the version now:")
@@ -21,7 +31,7 @@ if sys.argv[-1] == 'publish':
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read()
-requirements = list([x.strip() for x in open('requirements.txt').readlines()])
+
 
 setup(
     name='staticserve',
@@ -50,5 +60,5 @@ setup(
         'Topic :: Software Development :: Libraries',
         'Topic :: Utilities'
     ],
-    #test_suite='tests',
+    test_suite='tests',
 )
