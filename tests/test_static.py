@@ -30,12 +30,12 @@ class TestMakeServer(unittest.TestCase):
         serve_one_request(self.port)
 
     def test_serve_basic(self):
-        r = requests.get("http://localhost:{}".format(self.port))
+        r = requests.get("http://localhost:{0}".format(self.port))
         self.assertEqual(r.status_code, 200)
         self.assertTrue("mixed content test" in str(r.content))
 
     def test_serve_image(self):
-        r = requests.get("http://localhost:{}/682px-Oscypki.jpg".format(self.port))
+        r = requests.get("http://localhost:{0}/682px-Oscypki.jpg".format(self.port))
         self.assertEqual(r.status_code, 200)
         with open("testdata/pub/682px-Oscypki.jpg", "rb") as f:
             image = f.read()
