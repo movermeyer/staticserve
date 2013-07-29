@@ -20,7 +20,21 @@ when you just want to share a little content over HTTP, ad hoc.
 **Note**: A Python 2.7/3.3 compatible fork of Luke Arno's static package.
 
 Dependencies
-============
+------------
 
 * six  # For Python 2/3 compatability.
-* werkzeug  # For replacing rfc822 functionality.
+* werkzeug  # For replacing the deprecated Python stdlib rfc822 functionality.
+
+
+Test Dependencies
+------------------
+
+* requests - For checking the output
+
+
+Running Tests
+---------------
+
+Inside a virtualenv::
+
+    python setup.py test
