@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.3 (2013-07-29)
+++++++++++++++++++
+
+* Tests against serving of image files working in all places
+
 0.1.2 (2013-07-28)
 ++++++++++++++++++
 
