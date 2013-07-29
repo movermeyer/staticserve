@@ -30,7 +30,7 @@ Luke Arno can be found at http://lukearno.com/
 
 """
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 
 import mimetypes
 import time
