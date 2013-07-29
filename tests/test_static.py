@@ -26,16 +26,16 @@ def serve_one_request(count):
 class TestMakeServer(unittest.TestCase):
 
     def test_serve_basic(self):
-        self.port = random.randrange(10000, 65535)
-        serve_one_request(self.port)
-        r = requests.get("http://localhost:{0}".format(self.port))
+        port = random.randrange(10000, 65535)
+        serve_one_request(port)
+        r = requests.get("http://localhost:{0}".format(port))
         self.assertEqual(r.status_code, 200)
         self.assertTrue("mixed content test" in str(r.content))
 
     def test_serve_image(self):
-        self.port = random.randrange(10000, 65535)
-        serve_one_request(self.port)
-        r = requests.get("http://localhost:{0}/682px-Oscypki.jpg".format(self.port))
+        port = random.randrange(10000, 65535)
+        serve_one_request(port)
+        r = requests.get("http://localhost:{0}/682px-Oscypki.jpg".format(port))
         self.assertEqual(r.status_code, 200)
         with open("testdata/pub/682px-Oscypki.jpg", "rb") as f:
             image = f.read()
