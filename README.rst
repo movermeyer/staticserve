@@ -4,9 +4,9 @@ staticserve
 .. image:: https://travis-ci.org/pydanny/staticserve.png
    :alt: Build Status
    :target: https://travis-ci.org/pydanny/staticserve
-.. image:: https://pypip.in/v/staticserve/badge.png
+.. image:: https://img.shields.io/pypi/v/staticserve.svg
    :target: https://crate.io/packages/staticserve/
-.. image:: https://pypip.in/d/staticserve/badge.png
+.. image:: https://img.shields.io/pypi/dm/staticserve.svg
    :target: https://crate.io/packages/staticserve/
 
 This distribution provides an easy way to include static content
